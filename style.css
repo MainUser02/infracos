@@ -1,8 +1,11 @@
+/* ========================================= */
+/* БАЗОВЫЕ ПЕРЕМЕННЫЕ                        */
+/* ========================================= */
 :root {
-    --bg-main: #003aa8; 
+    --bg-main: #003aa8; /* Фирменный синий фон */
     --text-white: #ffffff;
     --text-muted: rgba(255, 255, 255, 0.7);
-    --peach: #f2d8c9; 
+    --peach: #f2d8c9; /* Акцентный пудровый цвет */
     --peach-hover: #e6c5b3;
     --white-hover: #e0e0e0;
     --transition: 0.3s ease;
@@ -11,8 +14,14 @@
 * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
 body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; min-height: 100vh; position: relative; }
 
-/* ПОЛНОЭКРАННЫЕ ЗВЕЗДЫ */
-.global-stars-wrapper { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none; overflow: hidden; }
+/* ========================================= */
+/* ПОЛНОЭКРАННЫЕ ЗВЕЗДЫ                      */
+/* ========================================= */
+.global-stars-wrapper {
+    position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0; pointer-events: none; overflow: hidden;
+}
+
 .stars-layer {
     position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
     background-image: 
@@ -23,18 +32,25 @@ body { background-color: var(--bg-main); color: var(--text-white); overflow-x: h
         radial-gradient(3px 3px at 300px 300px, rgba(242,216,201,0.8), rgba(0,0,0,0)); 
     background-repeat: repeat; background-size: 350px 350px;
 }
+
+/* Звезды плывут сами по себе */
 .stars-slow { animation: moveStars 60s linear infinite; opacity: 0.5; transform: scale(0.8); }
 .stars-fast { animation: moveStars 30s linear infinite; opacity: 0.8; transform: scale(1.2); }
+
 @keyframes moveStars { from { background-position: 0 0; } to { background-position: -700px 700px; } }
 
-/* СЕТКА И БАЗОВЫЕ КЛАССЫ */
+/* ========================================= */
+/* СЕТКА И БАЗОВЫЕ КЛАССЫ                    */
+/* ========================================= */
 .container { max-width: 1200px; margin: 0 auto; padding: 0 5%; position: relative; z-index: 10; }
 .grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; }
 .align-center { align-items: center; }
 .text-center { text-align: center; }
 .section { padding: 60px 0; min-height: 80vh; }
 
-/* ШАПКА */
+/* ========================================= */
+/* ШАПКА И НАВИГАЦИЯ                         */
+/* ========================================= */
 .header { display: flex; justify-content: space-between; align-items: center; padding: 30px 5%; position: relative; z-index: 100; }
 .logo { display: flex; align-items: center; z-index: 101; }
 .nav-menu { display: flex; gap: 30px; position: relative; }
@@ -51,39 +67,71 @@ body { background-color: var(--bg-main); color: var(--text-white); overflow-x: h
 .lang-switch span { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; margin-left: 10px; transition: var(--transition); }
 .lang-switch span:hover, .lang-switch span.active { color: var(--text-white); }
 
-/* Бургер меню */
 .burger-menu { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
 .burger-menu span { width: 25px; height: 3px; background: var(--text-white); border-radius: 3px; transition: var(--transition); }
 .hidden-mobile { display: inline-block; }
 
-/* КНОПКИ */
+/* ========================================= */
+/* КНОПКИ                                    */
+/* ========================================= */
 .btn { display: inline-block; padding: 15px 30px; border-radius: 30px; border: none; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: transform var(--transition), background var(--transition); text-align: center; }
 .btn-white { background-color: var(--text-white); color: var(--bg-main); }
 .btn-white:hover { background-color: var(--white-hover); transform: translateY(-3px); }
 .btn-peach { background-color: var(--peach); color: var(--bg-main); }
 .btn-peach:hover { background-color: var(--peach-hover); transform: translateY(-3px); }
 
-/* ТИПОГРАФИКА И КАРТОЧКИ */
+/* ========================================= */
+/* ТИПОГРАФИКА И КАРТОЧКИ (СТЕКЛО)           */
+/* ========================================= */
 h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
 h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 30px; }
 h3 { font-size: 1.5rem; margin-bottom: 15px; }
 p { font-size: 1.1rem; color: var(--text-white); opacity: 0.9; line-height: 1.6; margin-bottom: 30px; font-weight: 400; }
 
-.card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+.card { 
+    background: rgba(255, 255, 255, 0.1); 
+    backdrop-filter: blur(15px); 
+    -webkit-backdrop-filter: blur(15px); 
+    padding: 30px; 
+    border-radius: 20px; 
+    border: 1px solid rgba(255,255,255,0.2); 
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1); 
+}
 .badge { display: inline-block; padding: 5px 15px; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; color: white;}
 
-.data-table { width: 100%; border-collapse: collapse; min-width: 500px; } /* min-width для прокрутки на мобилках */
+.data-table { width: 100%; border-collapse: collapse; min-width: 500px; } 
 .data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.2); }
 .data-table th { background: rgba(0,0,0,0.15); color: var(--peach); }
 
-/* ИЛЛЮСТРАЦИИ: СОЛНЕЧНАЯ СИСТЕМА */
+/* ========================================= */
+/* ИЛЛЮСТРАЦИИ: СОЛНЕЧНАЯ СИСТЕМА            */
+/* ========================================= */
 .illustration-wrapper { position: relative; width: 100%; height: 600px; display: flex; justify-content: center; align-items: center; z-index: 1; }
 
 .solar-system-group { position: relative; width: 100%; height: 100%; display: flex; justify-content: center; align-items: center; }
 
-/* СОЛНЦЕ */
-.sun { position: absolute; width: 80px; height: 80px; border-radius: 50%; background: radial-gradient(circle, #fffbe0 0%, #ffcf24 40%, #f76b1c 100%); box-shadow: 0 0 40px #ffcf24, 0 0 80px #f76b1c, inset 0 0 15px #fff; animation: pulseSun 3s infinite alternate ease-in-out; z-index: 10; }
-@keyframes pulseSun { 0% { transform: scale(1); box-shadow: 0 0 40px #ffcf24, 0 0 80px #f76b1c; } 100% { transform: scale(1.05); box-shadow: 0 0 60px #ffcf24, 0 0 120px #f76b1c; } }
+/* СОЛНЦЕ (С фиксом мерцания на мобильных) */
+.sun { 
+    position: absolute; 
+    width: 80px; 
+    height: 80px; 
+    border-radius: 50%; 
+    background: radial-gradient(circle, #fffbe0 0%, #ffcf24 40%, #f76b1c 100%); 
+    box-shadow: 0 0 50px #ffcf24, 0 0 100px #f76b1c, inset 0 0 15px #fff; 
+    animation: pulseSun 3s infinite alternate ease-in-out; 
+    z-index: 10; 
+    
+    /* Фикс обрезки квадратом */
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    will-change: transform;
+}
+@keyframes pulseSun { 
+    0% { transform: scale(0.95); } 
+    100% { transform: scale(1.05); } 
+}
 
 /* ОРБИТЫ */
 .orbit { position: absolute; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%; animation: spin linear infinite; }
@@ -96,6 +144,7 @@ p { font-size: 1.1rem; color: var(--text-white); opacity: 0.9; line-height: 1.6;
 .orbit-7 { width: 540px; height: 540px; animation-duration: 840s; }  
 .orbit-8 { width: 620px; height: 620px; animation-duration: 1648s;}  
 .orbit-9 { width: 680px; height: 680px; animation-duration: 2480s;}  
+
 @keyframes spin { 100% { transform: rotate(360deg); } }
 
 /* ПЛАНЕТЫ */
@@ -109,10 +158,15 @@ p { font-size: 1.1rem; color: var(--text-white); opacity: 0.9; line-height: 1.6;
 .planet-7 { top: -6px; width: 12px; height: 12px; background: #4fd0e7; box-shadow: 0 0 10px #4fd0e7; } 
 .planet-8 { top: -6px; width: 12px; height: 12px; background: #274687; box-shadow: 0 0 10px #274687; } 
 .planet-9 { top: -1.5px; width: 3px; height: 3px; background: #dddddd; box-shadow: 0 0 4px #dddddd; } 
+
+/* Кольцо Сатурна */
 .planet-6::after { content: ""; position: absolute; top: 50%; left: 50%; width: 32px; height: 6px; background: rgba(234, 214, 184, 0.6); transform: translate(-50%, -50%) rotate(25deg); border-radius: 50%; }
+
+/* Луна */
 .moon { position: absolute; top: -4px; left: -4px; width: 16px; height: 16px; border-radius: 50%; animation: spin 1s linear infinite; }
 .moon::after { content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 2px; background: #fff; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 3px #fff; }
 
+/* Анимации UI и Параллакс */
 .fade-in { animation: fadeIn 0.4s ease-out forwards; }
 @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 .parallax-layer { will-change: transform; transition: transform 0.1s linear; }
@@ -121,13 +175,13 @@ p { font-size: 1.1rem; color: var(--text-white); opacity: 0.9; line-height: 1.6;
 /* АДАПТИВНОСТЬ (МЕДИА-ЗАПРОСЫ)              */
 /* ========================================= */
 
-/* Для планшетов */
+/* Планшеты */
 @media (max-width: 1024px) {
     h1 { font-size: 2.8rem; }
-    .solar-system-group { transform: scale(0.8); } /* Уменьшаем планеты на 20% */
+    .solar-system-group { transform: scale(0.8); } 
 }
 
-/* Для смартфонов */
+/* Смартфоны */
 @media (max-width: 768px) {
     .hidden-mobile { display: none !important; }
     .burger-menu { display: flex; }
@@ -137,24 +191,21 @@ p { font-size: 1.1rem; color: var(--text-white); opacity: 0.9; line-height: 1.6;
         position: absolute; top: 100%; left: 0; width: 100%;
         background: rgba(0, 58, 168, 0.95); backdrop-filter: blur(10px);
         flex-direction: column; gap: 0; align-items: flex-start;
-        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); /* Спрятано */
+        clip-path: polygon(0 0, 100% 0, 100% 0, 0 0); 
         transition: clip-path 0.4s ease; border-bottom: 1px solid rgba(255,255,255,0.1);
     }
     .nav-menu.active { clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%); }
     .nav-menu a, .dropdown-title { padding: 20px 5%; width: 100%; border-bottom: 1px solid rgba(255,255,255,0.05); }
     
-    /* Мобильный выпадающий список */
     .dropdown { width: 100%; }
     .dropdown-content { position: static; box-shadow: none; background: rgba(0,0,0,0.2); min-width: 100%; padding: 0; display: none; }
     .dropdown:hover .dropdown-content { display: block; }
     .dropdown-content a { color: var(--text-white); padding-left: 10%; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-    /* Анимация иконки бургера */
     .burger-menu.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
     .burger-menu.active span:nth-child(2) { opacity: 0; }
     .burger-menu.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
 
-    /* Сетка и типографика */
     .grid-2 { grid-template-columns: 1fr; gap: 30px; }
     .hero-section { flex-direction: column; text-align: center; padding-top: 40px; }
     .btns-group { justify-content: center; }
@@ -166,10 +217,10 @@ p { font-size: 1.1rem; color: var(--text-white); opacity: 0.9; line-height: 1.6;
     .solar-system-group { transform: scale(0.6); } 
 }
 
-/* Для самых маленьких экранов */
+/* Узкие экраны */
 @media (max-width: 480px) {
     h1 { font-size: 1.8rem; }
-    .solar-system-group { transform: scale(0.45); } /* Уменьшаем систему почти вдвое */
+    .solar-system-group { transform: scale(0.45); } 
     .illustration-wrapper { height: 350px; }
-    .btn { width: 100%; } /* Кнопки на всю ширину */
+    .btn { width: 100%; } 
 }
