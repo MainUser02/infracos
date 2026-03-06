@@ -47,7 +47,16 @@ document.addEventListener("DOMContentLoaded", () => {
 
     langBtns.forEach(b => b.classList.toggle('active', b.getAttribute('data-lang') === currentLang));
 
-    // --- 3. РОУТЕР SPA ---
+    // --- 3. БУРГЕР-МЕНЮ (ДЛЯ МОБИЛОК) ---
+    const burgerMenu = document.getElementById('burgerMenu');
+    const navMenu = document.getElementById('navMenu');
+
+    burgerMenu.addEventListener('click', () => {
+        burgerMenu.classList.toggle('active');
+        navMenu.classList.toggle('active');
+    });
+
+    // --- 4. РОУТЕР SPA ---
     const appRoot = document.getElementById('app-root');
     const navLinks = document.querySelectorAll('.nav-menu a');
 
@@ -65,6 +74,10 @@ document.addEventListener("DOMContentLoaded", () => {
             wrapper.appendChild(clone);
             appRoot.appendChild(wrapper);
 
+            // Закрываем мобильное меню при переходе по ссылке
+            burgerMenu.classList.remove('active');
+            navMenu.classList.remove('active');
+
             navLinks.forEach(link => link.classList.remove('active'));
             const activeLink = document.querySelector(`.nav-menu a[href="${hash}"]`);
             if (activeLink) activeLink.classList.add('active');
@@ -77,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
     window.addEventListener('hashchange', renderPage);
     renderPage();
 
-    // --- 4. ЭФФЕКТ ПАРАЛЛАКСА ЗА МЫШЬЮ (Только для фона и планет) ---
+    // --- 5. ЭФФЕКТ ПАРАЛЛАКСА ЗА МЫШЬЮ ---
     document.addEventListener('mousemove', (e) => {
         const parallaxLayers = document.querySelectorAll('.parallax-layer');
         if (parallaxLayers.length === 0) return;
