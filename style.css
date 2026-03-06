@@ -1,0 +1,146 @@
+:root {
+    --bg-main: #003aa8; 
+    --text-white: #ffffff;
+    --text-muted: rgba(255, 255, 255, 0.7);
+    --peach: #f2d8c9; 
+    --peach-hover: #e6c5b3;
+    --white-hover: #e0e0e0;
+    --transition: 0.3s ease;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Montserrat', sans-serif; }
+body { background-color: var(--bg-main); color: var(--text-white); overflow-x: hidden; min-height: 100vh; position: relative; }
+
+/* ПОЛНОЭКРАННЫЕ ЗВЕЗДЫ */
+.global-stars-wrapper {
+    position: fixed;
+    top: 0; left: 0; width: 100vw; height: 100vh;
+    z-index: 0; pointer-events: none; overflow: hidden;
+}
+
+.stars-layer {
+    position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
+    background-image: 
+        radial-gradient(2px 2px at 40px 70px, rgba(255,255,255,0.8), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 150px 160px, rgba(255,255,255,0.6), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 90px 40px, rgba(255,255,255,0.9), rgba(0,0,0,0)),
+        radial-gradient(2px 2px at 260px 120px, rgba(255,255,255,0.5), rgba(0,0,0,0)),
+        radial-gradient(3px 3px at 300px 300px, rgba(242,216,201,0.8), rgba(0,0,0,0)); 
+    background-repeat: repeat; background-size: 350px 350px;
+}
+/* Звезды сами по себе плывут по орбите */
+.stars-slow { animation: moveStars 60s linear infinite; opacity: 0.5; transform: scale(0.8); }
+.stars-fast { animation: moveStars 30s linear infinite; opacity: 0.8; transform: scale(1.2); }
+
+@keyframes moveStars { from { background-position: 0 0; } to { background-position: -700px 700px; } }
+
+/* СЕТКА И БАЗОВЫЕ КЛАССЫ */
+.container { max-width: 1200px; margin: 0 auto; padding: 0 5%; position: relative; z-index: 10; }
+.grid-2 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 50px; }
+.align-center { align-items: center; }
+.text-center { text-align: center; }
+.section { padding: 60px 0; min-height: 80vh; }
+
+/* ШАПКА */
+.header { display: flex; justify-content: space-between; align-items: center; padding: 30px 5%; }
+.logo { display: flex; align-items: center; }
+.nav-menu { display: flex; gap: 30px; position: relative; }
+.nav-menu a, .dropdown-title { color: var(--text-white); text-decoration: none; font-size: 0.9rem; font-weight: 600; transition: var(--transition); cursor: pointer; opacity: 0.8;}
+.nav-menu a:hover, .nav-menu a.active, .dropdown-title:hover { opacity: 1; color: var(--peach); }
+
+.dropdown { position: relative; }
+.dropdown-content { display: none; position: absolute; top: 100%; left: 0; background: rgba(255,255,255,0.95); border-radius: 10px; min-width: 180px; box-shadow: 0 10px 30px rgba(0,0,0,0.2); padding: 10px 0; z-index: 100; }
+.dropdown:hover .dropdown-content { display: block; }
+.dropdown-content a { color: var(--bg-main); display: block; padding: 10px 20px; border-bottom: 1px solid #eee; opacity: 1; }
+.dropdown-content a:hover { background: #f0f0f0; }
+
+.header-right { display: flex; align-items: center; gap: 20px; }
+.lang-switch span { font-size: 0.85rem; font-weight: 700; color: var(--text-muted); cursor: pointer; margin-left: 10px; transition: var(--transition); }
+.lang-switch span:hover, .lang-switch span.active { color: var(--text-white); }
+
+/* КНОПКИ */
+.btn { padding: 15px 30px; border-radius: 30px; border: none; font-weight: 700; font-size: 0.9rem; cursor: pointer; transition: transform var(--transition), background var(--transition); }
+.btn-white { background-color: var(--text-white); color: var(--bg-main); }
+.btn-white:hover { background-color: var(--white-hover); transform: translateY(-3px); }
+.btn-peach { background-color: var(--peach); color: var(--bg-main); }
+.btn-peach:hover { background-color: var(--peach-hover); transform: translateY(-3px); }
+
+/* ТИПОГРАФИКА И КАРТОЧКИ (Стекло) */
+h1 { font-size: 3.5rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; }
+h2 { font-size: 2.5rem; font-weight: 800; margin-bottom: 30px; }
+h3 { font-size: 1.5rem; margin-bottom: 15px; }
+p { font-size: 1.1rem; color: var(--text-white); opacity: 0.9; line-height: 1.6; margin-bottom: 30px; font-weight: 400; }
+
+.card { background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); padding: 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.2); box-shadow: 0 15px 35px rgba(0,0,0,0.1); }
+.badge { display: inline-block; padding: 5px 15px; background: rgba(255,255,255,0.2); border-radius: 20px; font-size: 0.8rem; font-weight: 600; margin-bottom: 15px; color: white;}
+
+.data-table { width: 100%; border-collapse: collapse; }
+.data-table th, .data-table td { padding: 15px; text-align: left; border-bottom: 1px solid rgba(255,255,255,0.2); }
+.data-table th { background: rgba(0,0,0,0.15); color: var(--peach); }
+
+/* ========================================= */
+/* ИЛЛЮСТРАЦИИ: 9 ПЛАНЕТ СОЛНЕЧНОЙ СИСТЕМЫ */
+/* ========================================= */
+.illustration-wrapper { position: relative; width: 100%; height: 600px; display: flex; justify-content: center; align-items: center; z-index: 1; }
+
+.solar-system-group {
+    position: absolute; width: 100%; height: 100%;
+    display: flex; justify-content: center; align-items: center;
+}
+
+/* СОЛНЦЕ */
+.sun {
+    position: absolute; width: 80px; height: 80px; border-radius: 50%;
+    background: radial-gradient(circle, #fffbe0 0%, #ffcf24 40%, #f76b1c 100%);
+    box-shadow: 0 0 40px #ffcf24, 0 0 80px #f76b1c, inset 0 0 15px #fff;
+    animation: pulseSun 3s infinite alternate ease-in-out;
+    z-index: 10;
+}
+@keyframes pulseSun {
+    0% { transform: scale(1); box-shadow: 0 0 40px #ffcf24, 0 0 80px #f76b1c; }
+    100% { transform: scale(1.05); box-shadow: 0 0 60px #ffcf24, 0 0 120px #f76b1c; }
+}
+
+/* ОРБИТЫ */
+.orbit { position: absolute; border: 1px solid rgba(255, 255, 255, 0.1); border-radius: 50%; animation: spin linear infinite; }
+.orbit-1 { width: 120px; height: 120px; animation-duration: 2.4s; }  
+.orbit-2 { width: 160px; height: 160px; animation-duration: 6.2s; }  
+.orbit-3 { width: 210px; height: 210px; animation-duration: 10s; border-style: dashed; border-color: rgba(255,255,255,0.2); } 
+.orbit-4 { width: 260px; height: 260px; animation-duration: 18.8s; } 
+.orbit-5 { width: 360px; height: 360px; animation-duration: 118s; }  
+.orbit-6 { width: 460px; height: 460px; animation-duration: 294s; }  
+.orbit-7 { width: 540px; height: 540px; animation-duration: 840s; }  
+.orbit-8 { width: 620px; height: 620px; animation-duration: 1648s;}  
+.orbit-9 { width: 680px; height: 680px; animation-duration: 2480s;}  
+
+@keyframes spin { 100% { transform: rotate(360deg); } }
+
+/* ПЛАНЕТЫ */
+.planet { position: absolute; border-radius: 50%; left: 50%; transform: translateX(-50%); }
+
+.planet-1 { top: -2px; width: 4px; height: 4px; background: #999; box-shadow: 0 0 5px #999; } 
+.planet-2 { top: -3.5px; width: 7px; height: 7px; background: #e8c396; box-shadow: 0 0 8px #e8c396; } 
+.planet-3 { top: -4px; width: 8px; height: 8px; background: #4b90c2; box-shadow: 0 0 10px #4b90c2; } 
+.planet-4 { top: -2.5px; width: 5px; height: 5px; background: #c1440e; box-shadow: 0 0 6px #c1440e; } 
+.planet-5 { top: -12px; width: 24px; height: 24px; background: #d39c7e; box-shadow: 0 0 15px #d39c7e; } 
+.planet-6 { top: -10px; width: 20px; height: 20px; background: #ead6b8; box-shadow: 0 0 15px #ead6b8; } 
+.planet-7 { top: -6px; width: 12px; height: 12px; background: #4fd0e7; box-shadow: 0 0 10px #4fd0e7; } 
+.planet-8 { top: -6px; width: 12px; height: 12px; background: #274687; box-shadow: 0 0 10px #274687; } 
+.planet-9 { top: -1.5px; width: 3px; height: 3px; background: #dddddd; box-shadow: 0 0 4px #dddddd; } 
+
+/* Кольцо Сатурна */
+.planet-6::after {
+    content: ""; position: absolute; top: 50%; left: 50%;
+    width: 32px; height: 6px; background: rgba(234, 214, 184, 0.6);
+    transform: translate(-50%, -50%) rotate(25deg); border-radius: 50%;
+}
+
+/* Луна */
+.moon { position: absolute; top: -4px; left: -4px; width: 16px; height: 16px; border-radius: 50%; animation: spin 1s linear infinite; }
+.moon::after { content: ''; position: absolute; top: 0; left: 50%; width: 2px; height: 2px; background: #fff; border-radius: 50%; transform: translateX(-50%); box-shadow: 0 0 3px #fff; }
+
+.fade-in { animation: fadeIn 0.4s ease-out forwards; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+/* Для JS-Параллакса */
+.parallax-layer { will-change: transform; transition: transform 0.1s linear; }
